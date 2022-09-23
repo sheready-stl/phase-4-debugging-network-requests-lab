@@ -14,19 +14,29 @@ function ToyCard({ toy, onDeleteToy, onUpdateToy }) {
   }
 
   function handleLikeClick() {
-    const updateObj = {
-      likes: toy.likes + 1,
-    };
+    // const updateObj = {
+    //   likes: toy.likes += 1,
+    // };
 
     fetch(`/toys/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(updateObj),
-    })
-      .then((r) => r.json())
-      .then((updatedToy) => onUpdateToy(updatedToy));
+      body: JSON.stringify({
+        like: toy.likes += 1
+      }),
+    }).then(r => r.json()).then((updatedToy) => console.log(updatedToy));
+
+    // fetch(`/toys/${id}`, {
+    //   method: "PATCH",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify(updateObj)
+    // })
+    // .then((r) => r.json())
+    // .then((updatedToy) => onUpdateToy(updatedToy));
   }
 
   return (
